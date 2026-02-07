@@ -7,10 +7,14 @@ import com.gabrieldev.apiVendas.entities.Usuario;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 
-@Mapper(componentModel = "spring")
+import java.util.List;
+
+@Mapper(componentModel = "spring", uses = PedidoMapper.class)
 public interface UsuarioMapper {
 
     Usuario toEntity(UsuarioDtoRequest dto);
 
     UsuarioDtoResponse toDTO(Usuario usuario);
+
+    List<UsuarioDtoResponse> toDTOList(List<Usuario> usuarios);
 }

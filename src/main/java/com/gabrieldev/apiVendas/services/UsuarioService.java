@@ -8,6 +8,8 @@ import com.gabrieldev.apiVendas.repositories.UsuarioRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @AllArgsConstructor
 @Service
 public class UsuarioService {
@@ -22,5 +24,10 @@ public class UsuarioService {
 
     public UsuarioDtoResponse buscarUsuario(Long id){
         return mapper.toDTO(usuarioRepository.findById(id).orElseThrow());
+    }
+
+    public List<UsuarioDtoResponse> buscarTodos(){
+        List<Usuario> usuarioList = usuarioRepository.findAllWithPedidos();
+        return mapper.toDTOList(usuarioList);
     }
 }
