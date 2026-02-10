@@ -1,4 +1,4 @@
-CREATE TABLE pedidos(
+CREATE TABLE IF NOT EXISTS pedidos(
     id BIGSERIAL PRIMARY KEY,
     usuario_id BIGSERIAL NOT NULL,
     vendedor_id BIGSERIAL NOT NULL,

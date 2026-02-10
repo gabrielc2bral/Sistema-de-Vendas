@@ -1,4 +1,4 @@
-CREATE TABLE itens_pedido (
+CREATE TABLE IF NOT EXISTS itens_pedido (
     id BIGSERIAL PRIMARY KEY,
 
     pedido_id BIGSERIAL NOT NULL,
