@@ -4,18 +4,18 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
 import java.util.Date;
 
 @Service
-@RequiredArgsConstructor
-
 public class JwtService {
-    private final String SECRET_KEY = "7H1RysxOnkXnN4CdIBpINi9NYu7YwtaOy6gTn95YF6S";
-    private final long EXPIRATION_TIME = 1000 * 60 * 60;
+    @Value("${api.security.token.secret}")
+    private String SECRET_KEY;
+    @Value("${jwt.expiration}")
+    private long EXPIRATION_TIME;
 
     private Key getSignKey() {
         return Keys.hmacShaKeyFor(SECRET_KEY.getBytes());

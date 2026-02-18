@@ -1,6 +1,7 @@
 package com.gabrieldev.apiVendas.dto.request;
 
 import com.gabrieldev.apiVendas.entities.TipoDeConta;
+import com.gabrieldev.apiVendas.entities.enun.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -8,6 +9,7 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.br.CPF;
 
 @Data
 @AllArgsConstructor
@@ -27,7 +29,7 @@ public class UsuarioDtoRequest {
     private String senha;
 
     @NotBlank
-    @Pattern(regexp = "^\\d{11}$", message = "CPF deve conter 11 dígitos")
+    @CPF(message = "O CPF informado é inválido")
     private String cpf;
 
     private TipoDeConta tipoDeConta;

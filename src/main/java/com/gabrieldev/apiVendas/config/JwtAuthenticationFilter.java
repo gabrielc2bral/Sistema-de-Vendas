@@ -1,8 +1,8 @@
 package com.gabrieldev.apiVendas.config;
 
+import com.gabrieldev.apiVendas.entities.Usuario;
+import com.gabrieldev.apiVendas.repositories.UsuarioRepository;
 import com.gabrieldev.apiVendas.services.JwtService;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,13 +15,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
 
 @Component
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
+    private final UsuarioRepository usuarioRepository;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -31,19 +31,26 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
         String token = authHeader.substring(7);
-        String role = jwtService.extractRole(token);
-        if (jwtService.isTokenValid(token)) {
 
-            String email = jwtService.extractEmail(token);
+        if (!jwtService.isTokenValid(token)) {
+            filterChain.doFilter(request, response);
+            return;
+        }
 
-            UsernamePasswordAuthenticationToken authentication =
-                    new UsernamePasswordAuthenticationToken(
-                            email,
-                            null,
-                            List.of(new SimpleGrantedAuthority(role))
-                    );
+        String email = jwtService.extractEmail(token);
+        if (SecurityContextHolder.getContext().getAuthentication() == null) {
+            Usuario usuario = usuarioRepository.findByEmail(email).orElse(null);
 
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+            if (usuario != null) {
+                UsernamePasswordAuthenticationToken authentication =
+                        new UsernamePasswordAuthenticationToken(
+                                usuario,
+                                null,
+                                List.of(new SimpleGrantedAuthority("ROLE_" + usuario.getRole().name()))
+
+                        );
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
         }
 
         filterChain.doFilter(request, response);

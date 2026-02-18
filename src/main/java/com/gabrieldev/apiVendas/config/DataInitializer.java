@@ -26,7 +26,7 @@ public class DataInitializer {
                 admin.setSenha(passwordEncoder.encode("187574554@admin77752270"));
                 admin.setCpf("11122233344");
                 admin.setTipoDeConta(TipoDeConta.CLIENTE);
-                admin.setRole(Role.ROLE_ADMIN);
+                admin.setRole(Role.ADMIN);
 
                 repository.save(admin);
             }

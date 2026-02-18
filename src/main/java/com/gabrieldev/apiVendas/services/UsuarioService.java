@@ -3,6 +3,7 @@ package com.gabrieldev.apiVendas.services;
 import com.gabrieldev.apiVendas.dto.request.UsuarioDtoRequest;
 import com.gabrieldev.apiVendas.dto.response.UsuarioDtoResponse;
 import com.gabrieldev.apiVendas.entities.Usuario;
+import com.gabrieldev.apiVendas.entities.enun.Role;
 import com.gabrieldev.apiVendas.exceptions.EntityNotFoundException;
 import com.gabrieldev.apiVendas.mappers.UsuarioMapper;
 import com.gabrieldev.apiVendas.repositories.UsuarioRepository;
@@ -25,6 +26,7 @@ public class UsuarioService {
         String senhaCriptografada = passwordEncoder.encode(dto.getSenha());
         dto.setSenha(senhaCriptografada);
         Usuario usuario = mapper.toEntity(dto);
+        usuario.setRole(Role.USER);
         usuarioRepository.save(usuario);
         return mapper.toDTO(usuario);
     }
