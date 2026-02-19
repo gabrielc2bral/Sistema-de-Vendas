@@ -10,8 +10,8 @@ API REST para sistema de vendas com Spring Boot. Permite criar, ler, atualizar e
 - Senhas criptografadas com BCrypt.
 
 ##  Segurança
-
-A segurança é feita com **Spring Security**, usando **JWT** para autenticação. Cada token contém email e role do usuário, garantindo acesso apenas aos endpoints permitidos. O `JwtAuthenticationFilter` intercepta as requisições e valida os tokens, colocando a autenticação no `SecurityContextHolder`. Roles são prefixadas com `ROLE_` para compatibilidade com Spring Security.
+A segurança é feita com **Spring Security**, usando **JWT** para autenticação. Cada token contém email e role do usuário, garantindo acesso apenas aos endpoints permitidos. 
+O `JwtAuthenticationFilter` intercepta as requisições e valida os tokens, colocando a autenticação no `SecurityContextHolder`. Roles são prefixadas com `ROLE_` para compatibilidade com Spring Security.
 ---
 ## Começando
 
