@@ -17,4 +17,7 @@ public class Produto {
     private Long id;
     private String nome;
     private BigDecimal preco;
+
+    @Column(nullable = false)
+    private Integer quantidade = 0;
 }

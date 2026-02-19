@@ -8,12 +8,9 @@ import java.math.BigDecimal;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ItemPedidoDtoResponse {
+public class ProdutoDtoResponse {
     private Long id;
-    private Long produtoId;
-    private String nomeProduto;
-    private int quantidade;
-    private BigDecimal precoUnitario;
+    private String nome;
+    private BigDecimal preco;
 
 }
-

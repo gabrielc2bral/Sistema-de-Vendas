@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -27,6 +28,11 @@ public class Pedido {
     private LocalDateTime criadoEm;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
-    private List<ItemPedido> itemPedidos;
+    private List<ItemPedido> itemPedidos = new ArrayList<>();
+
+    public void adicionarItem(ItemPedido item) {
+        this.itemPedidos.add(item);
+        item.setPedido(this);
+    }
 
 }
