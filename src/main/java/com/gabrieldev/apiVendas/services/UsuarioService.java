@@ -31,9 +31,9 @@ public class UsuarioService {
         return mapper.toDTO(usuario);
     }
 
-    public UsuarioDtoResponse buscarUsuario(Long id){
+    public Usuario buscarUsuario(Long id){
         Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
-        return mapper.toDTO(usuario);
+        return usuario;
 
     }
 

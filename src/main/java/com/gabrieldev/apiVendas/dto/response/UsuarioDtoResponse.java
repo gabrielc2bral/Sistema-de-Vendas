@@ -8,5 +8,4 @@ import lombok.*;
 public class UsuarioDtoResponse {
     private Long id;
     private String nomeCompleto;
-    //private List<PedidoDtoResponse> pedidos;
 }

@@ -12,5 +12,5 @@ public class ProdutoDtoResponse {
     private Long id;
     private String nome;
     private BigDecimal preco;
-
+    private Integer quantidade;
 }

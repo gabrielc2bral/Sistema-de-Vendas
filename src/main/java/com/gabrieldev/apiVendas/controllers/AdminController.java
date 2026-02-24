@@ -1,6 +1,7 @@
 package com.gabrieldev.apiVendas.controllers;
 
 import com.gabrieldev.apiVendas.dto.response.UsuarioDtoResponse;
+import com.gabrieldev.apiVendas.mappers.UsuarioMapper;
 import com.gabrieldev.apiVendas.services.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,10 +21,12 @@ import java.util.List;
 public class AdminController {
 
     private final UsuarioService usuarioService;
+    private final UsuarioMapper usuarioMapper;
 
     @GetMapping("/users/{id}")
     public ResponseEntity<UsuarioDtoResponse> buscarUsuario(@PathVariable Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(usuarioService.buscarUsuario(id));
+        UsuarioDtoResponse usuarioDtoResponse = usuarioMapper.toDTO(usuarioService.buscarUsuario(id));
+        return ResponseEntity.status(HttpStatus.OK).body(usuarioDtoResponse);
     }
 
     @GetMapping("/users")

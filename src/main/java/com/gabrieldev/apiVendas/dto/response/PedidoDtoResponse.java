@@ -1,5 +1,6 @@
 package com.gabrieldev.apiVendas.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,7 @@ public class PedidoDtoResponse {
     private Long id;
     private Long usuarioId;
     private Long vendedorId;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime criadoEm;
     private List<ItemPedidoDtoResponse> itens;
 

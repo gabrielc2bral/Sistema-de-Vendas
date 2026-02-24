@@ -3,6 +3,7 @@ package com.gabrieldev.apiVendas.services;
 import com.gabrieldev.apiVendas.dto.request.ItemPedidoDtoRequest;
 import com.gabrieldev.apiVendas.dto.request.PedidoDtoRequest;
 import com.gabrieldev.apiVendas.dto.response.PedidoDtoResponse;
+import com.gabrieldev.apiVendas.dto.response.UsuarioDtoResponse;
 import com.gabrieldev.apiVendas.entities.ItemPedido;
 import com.gabrieldev.apiVendas.entities.Pedido;
 import com.gabrieldev.apiVendas.entities.Produto;
@@ -26,6 +27,7 @@ import java.util.Map;
 public class PedidoService {
     private final PedidoRespository pedidoRespository;
     private final ProdutoRepository produtoRepository;
+    private final UsuarioService usuarioService;
     private final PedidoMapper pedidoMapper;
     private final ItemPedidoMapper itemPedidoMapper;
 
@@ -34,8 +36,10 @@ public class PedidoService {
             if (dtoRequest.getItemPedidoList() == null || dtoRequest.getItemPedidoList().isEmpty()) {
                 throw new RuntimeException("Não é possível criar um pedido sem itens.");
             }
+            Usuario vendedor = usuarioService.buscarUsuario(dtoRequest.getVendedorID());
             Pedido pedido = new Pedido();
             pedido.setUsuario(usuario);
+            pedido.setVendedor(vendedor);
             pedido.setCriadoEm(LocalDateTime.now());
             Map<Long, Integer> itensAgrupados = new HashMap<>();
             for(ItemPedidoDtoRequest itemDto : dtoRequest.getItemPedidoList()){
