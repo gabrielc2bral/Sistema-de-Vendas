@@ -2,9 +2,10 @@
 
 API REST para sistema de vendas com Spring Boot. Permite criar, ler, atualizar e deletar usuários, pedidos e produtos, gerenciar roles com segurança via JWT e Spring Security, além de boas práticas em Java moderno.
 
-## ⚙ Funcionalidades
+## Funcionalidades
 
-- Cadastro e gerenciamento de usuários, produtos e pedidos.
+- Cadastro de usuários, produtos e pedidos.
+- Controle de estoque dos produtos
 - Autenticação e autorização via JWT.
 - Roles de acesso (`ROLE_ADMIN`, `ROLE_USER`) e proteção de endpoints com `@PreAuthorize`.
 - Senhas criptografadas com BCrypt.
