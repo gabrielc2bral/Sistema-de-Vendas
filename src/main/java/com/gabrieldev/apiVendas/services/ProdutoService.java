@@ -9,6 +9,8 @@ import com.gabrieldev.apiVendas.repositories.ProdutoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ProdutoService {
@@ -27,6 +29,10 @@ public class ProdutoService {
     public Produto buscarProduto (Long id){
         Produto produto = produtoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Produto não existe"));
         return produto;
+    }
+
+    public List<Produto> buscarTodosOsProdutps (){
+        return produtoRepository.findAll();
     }
 
 }
