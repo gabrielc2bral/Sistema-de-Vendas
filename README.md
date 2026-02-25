@@ -51,13 +51,16 @@ DB_PASS=senha123
 PGADMIN_EMAIL=admin@admin.com
 PGADMIN_PASSWORD=admin123
 ```
-2 - Docker Compose e Docker file já existem
+2. Docker Compose e Docker file já existem
 
-3- Suba em prod com docker-compose up --build ou configure o intelij com as variáveis  de ambiente com: SPRING_PROFILES_ACTIVE=dev 
-
+3. Suba em prod com docker-compose up --build ou configure o intelij com as variáveis  de ambiente com: SPRING_PROFILES_ACTIVE=dev 
+---
 ## Extras
 - Para testar a API, use o Postman ou Curl com o header `Authorization: Bearer <TOKEN>`.  
 - Documentação Swagger disponível nos endpoints `/swagger-ui.html` 
 - Sinta-se livre para contribuir, abrir issues ou sugerir melhorias.
 
 ## Mini Blog 
+
+- 25/02/2026 - Criei um endpoint para pegar um resumo dos pedidos e dos itens de cada usuário logado no sistema. Futuramente penso em separar em dois endpoints.
+- 24/02/206 - Estou aprendendo um novo padrão de Exeption usando a classe "StandardError".
