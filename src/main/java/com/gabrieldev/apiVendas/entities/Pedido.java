@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,9 @@ public class Pedido {
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     private List<ItemPedido> itemPedidos = new ArrayList<>();
+
+    @Column(name = "valor_total")
+    private BigDecimal total = BigDecimal.ZERO;
 
     public void adicionarItem(ItemPedido item) {
         this.itemPedidos.add(item);

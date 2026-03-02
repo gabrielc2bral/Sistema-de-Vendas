@@ -1,6 +1,7 @@
 package com.gabrieldev.apiVendas.services;
 
 import com.gabrieldev.apiVendas.dto.request.UsuarioDtoRequest;
+import com.gabrieldev.apiVendas.dto.response.PedidoDtoResponse;
 import com.gabrieldev.apiVendas.dto.response.UsuarioDtoResponse;
 import com.gabrieldev.apiVendas.entities.Usuario;
 import com.gabrieldev.apiVendas.entities.enun.Role;
@@ -52,4 +53,5 @@ public class UsuarioService {
 
         return jwtService.generateToken(usuario.getEmail(), String.valueOf(usuario.getRole()));
     }
+
 }

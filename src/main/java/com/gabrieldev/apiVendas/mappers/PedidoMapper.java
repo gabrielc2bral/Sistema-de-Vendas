@@ -2,6 +2,7 @@ package com.gabrieldev.apiVendas.mappers;
 
 import com.gabrieldev.apiVendas.dto.request.PedidoDtoRequest;
 import com.gabrieldev.apiVendas.dto.response.PedidoDtoResponse;
+import com.gabrieldev.apiVendas.dto.response.PedidoDtoResponseResumo;
 import com.gabrieldev.apiVendas.entities.Pedido;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -15,10 +16,10 @@ public interface PedidoMapper {
     @Mapping(target = "itemPedidos", ignore = true)
     Pedido toEntity(PedidoDtoRequest dto);
 
-    @Mapping(source = "usuario.id", target = "usuarioId")
-    @Mapping(source = "vendedor.id", target = "vendedorId")
-    @Mapping(source = "itemPedidos", target = "itens")
+
     PedidoDtoResponse toDTO(Pedido pedido);
+
+    PedidoDtoResponseResumo toDTOResumo(Pedido pedido);
 
     List<PedidoDtoResponse> toDTOList(List<Pedido> pedido);
 }

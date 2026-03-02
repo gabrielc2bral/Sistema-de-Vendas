@@ -28,6 +28,6 @@ public class PedidosController {
     @GetMapping("/")
     public ResponseEntity<List<PedidoDtoResponse>> buscarPedidos(Authentication authentication){
         Usuario usuarioLogado = (Usuario) authentication.getPrincipal();
-        return ResponseEntity.status(HttpStatus.OK).body(pedidoService.buscarPedido(usuarioLogado));
+        return ResponseEntity.status(HttpStatus.OK).body(pedidoService.buscarPedidos(usuarioLogado));
     }
 }
