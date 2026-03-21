@@ -26,7 +26,7 @@ public class ProdutoController {
     public ResponseEntity<ProdutoDtoResponse> criarProduto(@Valid @RequestBody ProdutoDtoRequest dtoRequest) {
         return ResponseEntity.status(HttpStatus.CREATED).body(produtoService.criarProduto(dtoRequest));
     }
-    @PreAuthorize("hasRole('ADMIN')")
+
     @GetMapping("")
     public ResponseEntity<?> buscarProduto(@RequestParam(required = false) Long id) {
         if (id != null) {

@@ -10,12 +10,23 @@ import java.time.Instant;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-
+    private StandardError buildError(HttpStatus httpStatus, String error, String message, HttpServletRequest request){
+        return new StandardError(
+                Instant.now(),
+                httpStatus.value(),
+                error,
+                message,
+                request.getRequestURI()
+        );
+    }
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<String> handleNotFound(EntityNotFoundException e){
-        return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
-                .body(e.getMessage());
+    public ResponseEntity<StandardError> handleNotFound(EntityNotFoundException e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        String error = "Entidade não existe";
+
+        StandardError err = buildError(status, error, e.getMessage(), request);
+
+        return ResponseEntity.status(status).body(err);
     }
 
     // Aprendendo esse novo padrão de exception
@@ -24,13 +35,7 @@ public class GlobalExceptionHandler {
         String error = "Erro de autenticação";
         HttpStatus status = HttpStatus.UNAUTHORIZED;
 
-        StandardError err = new StandardError(
-                Instant.now(),
-                status.value(),
-                error,
-                e.getMessage(),
-                request.getRequestURI()
-        );
+        StandardError err = buildError(status, error, e.getMessage(), request);
 
         return ResponseEntity.status(status).body(err);
     }
@@ -39,13 +44,7 @@ public class GlobalExceptionHandler {
         String error = "Estoque Insuficiente";
         HttpStatus status = HttpStatus.BAD_REQUEST;
 
-        StandardError err = new StandardError(
-                Instant.now(),
-                status.value(),
-                error,
-                e.getMessage(),
-                request.getRequestURI()
-        );
+        StandardError err = buildError(status, error, e.getMessage(), request);
 
         return ResponseEntity.status(status).body(err);
     }
