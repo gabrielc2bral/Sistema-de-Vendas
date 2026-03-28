@@ -36,29 +36,30 @@ O projeto já possui três perfis:
 1. Crie o arquivo `.env` com as variáveis:
 
 ```env
-# Banco de dados
-POSTGRES_DB=api_vendas
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=senha123
+SPRING_PROFILES_ACTIVE= DEV OU PROD
 
-# JWT
-JWT_SECRET=SUA KEY, EX: kfOmtzsh3b2PuNd1R5yWIgoEYJcSAU9X
+POSTGRES_DB=
+POSTGRES_USER=
+POSTGRES_PASSWORD=
 
-# Spring Profile
-SPRING_PROFILES_ACTIVE=prod
+DB_URL=
+DB_USER=
+DB_PASS=
 
-# Conexão Spring Boot
-DB_URL=jdbc:postgresql://postgres:5432/api_vendas
-DB_USER=postgres
-DB_PASS=senha123
+MONGO_USER=
+MONGO_PASSWORD=
+MONGO_DB=
+MONGO_URI=
 
-# PgAdmin
-PGADMIN_EMAIL=admin@admin.com
-PGADMIN_PASSWORD=admin123
+JWT_SECRET=
+
+// APENAS DEV
+PGADMIN_EMAIL=
+PGADMIN_PASSWORD=
 ```
 2. Docker Compose e Docker file já existem.
+3. Suba em prod com ("docker compose --env-file .env.prod -f docker-compose.prod.yml -p dev up")  ou ("docker compose --env-file .env.dev -f docker-compose.dev.yml -p dev up") em de.
 
-3. Suba em prod com docker-compose up --build ou configure o intelij com as variáveis  de ambiente com: SPRING_PROFILES_ACTIVE=dev 
 
 ---
 
